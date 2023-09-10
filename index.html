@@ -20,18 +20,28 @@
   <body>
     <div class="container">
       <div class="weatherApp">
-        <h1>Shiraz</h1>
-        <ul>
-          <li>Sunday 12:07</li>
-          <li>cloudy</li>
-        </ul>
+        <div class="overview">
+          <h1>Shiraz</h1>
+          <ul>
+            <li>Sunday 12:07</li>
+            <li>cloudy</li>
+          </ul>
+        </div>
         <div class="row">
           <div class="col-6">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png
+            <div class="d-flex weather-temprature">
+              <img
+                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png
             "
-              alt="cloudy" />
-            35°C | °F
+                alt="cloudy"
+                id="icon"
+                class="float-left" />
+              <span class="float-left">
+                <strong id="temprature">35</strong> <span class="units">
+                  °C |<a href="#">°F</a>  
+                </span>
+              </span>
+            </div>
           </div>
           <div class="col-6">
             <ul>
