@@ -36,11 +36,26 @@ function showTemprature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/${response.data.condition.icon_url}.png`
+  );
 }
 
-let apiKey = "5ba48f3fa9a06o73t826ba624a30b504";
+function search(city) {
+  let apiKey = "5ba48f3fa9a06o73t826ba624a30b504";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemprature);
+}
 
-let city = "Shiraz";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
 
-axios.get(apiUrl).then(showTemprature);
+let form = document.querySelector("#WeatherSearch");
+form.addEventListener("submit", handleSubmit);
+
+search("Shiraz");
