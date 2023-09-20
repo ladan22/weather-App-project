@@ -21,10 +21,14 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+
+
+
+
 function showTemprature(response) {
   console.log(response.data);
 
-  let temperatureElement = document.querySelector("#temprature");
+  let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.city;
@@ -37,10 +41,11 @@ function showTemprature(response) {
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.time * 1000);
   let iconElement = document.querySelector("#icon");
-  iconElement.setAttribute(
-    "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/${response.data.condition.icon_url}.png`
-  );
+   iconElement.setAttribute(
+     "src",
+     "http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon_url}.png"
+   );
+   iconElement.setAttribute("alt", response.data.condition[0].icon);
 }
 
 function search(city) {
